@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<table>
+    <tr valign="top">
+        <td><img src="{{ profile_picture }}" class="profile-pic" alt="User's profile picture"></td>
+        <td>
+            <h1>{{ user.username }}</h1>
+            {% if user.profilebio %}
+                <p>{{ user.profilebio }}</p>
+            {% endif %}
+            {% if user.last_seen %}
+                <p>Last seen: {{ user.last_seen }}</p>
+            {% endif %}
+        </td>
+
+
+    </tr>
+</table>
+<hr>
+
+
+{% if current_user == user %}
+<h2>Update Profile</h2>
+<form method="POST" enctype="multipart/form-data">
+    {{ update_form.hidden_tag() }}
+    <div class="form-group">
+        {{ update_form.profilebio.label(class="form-label") }}
+        {{ update_form.profilebio(class="form-control") }}
+        {{ update_form.username.label(class="form-label") }}
+        {{ update_form.username(class="form-control") }}
+        {{ update_form.email.label(class="form-label") }}
+        {{ update_form.email(class="form-control") }}
+        {{ update_form.profile_picture.label(class="form-label") }}
+        {{ update_form.profile_picture(class="form-control-file") }}
+    </div>
+    {{ update_form.submit(class="btn btn-primary") }}
+</form>
+{% endif %}
+
+
+<table>
+    <hr>
+    {% for post in posts %}
+        {% include "_posts.html" %}
+    {% endfor %}
+</table>
+{% endblock %}

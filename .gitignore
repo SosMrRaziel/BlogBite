@@ -1,0 +1,13 @@
+# Byte-compiled / optimized / DLL files
+mini
+__pycache__
+mysql_connect.py
+migrations
+
+# Ignore everything in the pictures folder
+# app/static/images/profile_pics/*.jpg
+app/static/images/profile_pics/*
+
+# Except for this file
+
+!app/static/images/profile_pics/default.png

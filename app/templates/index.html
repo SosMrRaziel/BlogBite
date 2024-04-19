@@ -1,0 +1,54 @@
+<html>
+    {% extends "base.html" %}
+    {% block content %}
+
+        <h1>Hello, {{current_user.username}}</h1>
+        <h1>Add Post</h1>
+        
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.title.label }}<br>
+                {{ form.title(size=32) }}<br>
+                {% for error in form.title.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.content.label }}<br>
+                {{ form.content(size=32) }}<br>
+                {% for error in form.content.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>{{ form.submit() }}</p>
+        </form>
+
+        <h2>Posts</h2>
+
+        <!-- {% for post in posts %}
+            <img src="{{ url_for('static', filename='images/profile_pics/' + post.author.profile_picture) }}" class="profile-pic-post">
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
+    {% endfor %} -->
+
+
+        <table id="fix">
+            {% for post in posts %}
+                <tr valign="top">
+                    <td><img src="{{ url_for('static', filename='images/profile_pics/' + post.author.profile_picture) }}" class="profile-pic-post"></td>
+                    <td>
+                        <h1>{{ post.author.username }}:</h1>
+                        <p>{{ post.content }}</p>
+                        <p>{{ post.datepost }}</p>
+                    </td>
+                </tr>
+            {% endfor %}
+
+
+        <!-- {% for post in posts %}
+        <div><p>{{ post.author.username}} says: <b>{{ post.content}}</b></p></div>
+        {% endfor %} -->
+    {% endblock %}
+    
+</html>

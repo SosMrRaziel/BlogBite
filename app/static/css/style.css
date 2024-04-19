@@ -1,0 +1,17 @@
+.profile-pic {
+    width: 150px;
+    height: auto;
+    border-radius: 50%;
+}
+.profile-pic-post {
+    width: 5%;
+    height: 5%;
+    border-radius: 50%;
+}
+
+#fix td {
+    /* Remove any display: inline-block; if present */
+    padding: 0; /* Adjust padding as needed */
+    margin: 0; /* Adjust margin as needed */
+    /* Ensure border-spacing is set appropriately if using border-collapse: separate; */
+  }
