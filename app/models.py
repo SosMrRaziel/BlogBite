@@ -36,7 +36,7 @@ def load_user(id):
 class Post(BlogBite.Model):
     postID = BlogBite.Column(BlogBite.Integer, primary_key = True)
     title = BlogBite.Column(BlogBite.String(24), nullable = False )
-    content = BlogBite.Column(BlogBite.String(140))
+    content = BlogBite.Column(BlogBite.String())
     datepost = BlogBite.Column(
         BlogBite.DateTime, index = True, default = datetime.utcnow)
     # posts_picture = BlogBite.Column(

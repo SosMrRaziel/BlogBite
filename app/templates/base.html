@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="styles/profile.css"> -->
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename = 'pictures/profile_pictures/') }}"> -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     
 
         {% if title %}
-        <title>{{ title}} - BlogBite</title>
+        <title>{{ title }} - BlogBite</title>
         {% else %}
         <title>Welcome to BlogBite</title>
         {% endif %}

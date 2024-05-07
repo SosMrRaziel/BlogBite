@@ -39,11 +39,17 @@
 </form>
 {% endif %}
 
+<hr>
 
-<table>
-    <hr>
-    {% for post in posts %}
-        {% include "_posts.html" %}
-    {% endfor %}
-</table>
+
+<div>
+    <h2>Posts</h2>
+    <div>
+        {% for post in posts %}
+            {% if post.author.username == user.username %}
+                {% include "_posts.html" %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
