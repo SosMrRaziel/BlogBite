@@ -1,49 +1,58 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
 
-{% block content %}
+<div class="profile">
+  <div class="first-row">
+    <img src="{{ profile_picture }}" alt="Profile picture" />
 
-<table>
-    <tr valign="top">
-        <td><img src="{{ profile_picture }}" class="profile-pic" alt="User's profile picture"></td>
-        <td>
-            <h1>{{ user.username }}</h1>
-            {% if user.profilebio %}
-                <p>{{ user.profilebio }}</p>
-            {% endif %}
-            {% if user.last_seen %}
-                <p>Last seen: {{ user.last_seen }}</p>
-            {% endif %}
-        </td>
+  </div>
 
 
-    </tr>
-</table>
-<hr>
 
+  <div>
+    <h2>{{ user.username }}</h2>
+    {% if user.profilebio %}
+    <p>{{ user.profilebio }}</p>
+    {% endif %} {% if user.last_seen %}
+    <p>Last seen: <b>{{ user.last_seen }}</b></p>
+    {% endif %}
+  </div>
 
-{% if current_user == user %}
-<h2>Update Profile</h2>
-<form method="POST" enctype="multipart/form-data">
+  <div class="profile-update">
+    {% if current_user == user %}
+    <form method="POST" enctype="multipart/form-data">
     {{ update_form.hidden_tag() }}
-    <div class="form-group">
-        {{ update_form.profilebio.label(class="form-label") }}
-        {{ update_form.profilebio(class="form-control") }}
+      <div class="form-group">
         {{ update_form.username.label(class="form-label") }}
         {{ update_form.username(class="form-control") }}
+      </div>
+      <div class="form-group">
         {{ update_form.email.label(class="form-label") }}
         {{ update_form.email(class="form-control") }}
+      </div>
+      <div class="form-group">
+        {{ update_form.profilebio.label(class="form-label") }}
+        {{ update_form.profilebio(class="form-control") }}
+      </div>
+
+      <div class="tb-container">
         {{ update_form.profile_picture.label(class="form-label") }}
         {{ update_form.profile_picture(class="form-control-file") }}
-    </div>
-    {{ update_form.submit(class="btn btn-primary") }}
-</form>
-{% endif %}
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Submit" />
+      </div>
+    </form>
+    {% endif %}
+  </div>
+</div>
+</div>
 
-<hr>
+
+
+
 
 
 <div>
-    <h2>Posts</h2>
     <div>
         {% for post in posts %}
             {% if post.author.username == user.username %}
@@ -52,4 +61,6 @@
         {% endfor %}
     </div>
 </div>
+
+
 {% endblock %}

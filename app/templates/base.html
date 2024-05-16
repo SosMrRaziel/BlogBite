@@ -1,39 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../static/images/logo/blogbite_logo1.png"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
 
-        {% if title %}
-        <title>{{ title }} - BlogBite</title>
-        {% else %}
-        <title>Welcome to BlogBite</title>
-        {% endif %}
-    </head>
-    <body>
-        <div>
-            BlogBite:
-            <a href="{{ url_for('index') }}"">Home</a>
-            {% if current_user.is_anonymous %}
-            <a href="{{ url_for('login') }}">Login</a>
-            {% else %}
-            <a href="{{ url_for('profile', username=current_user.username) }}">Profile</a>
-            <a href="{{ url_for('logout') }}">Logout</a>
-            {% endif %}
-            
+    {% if title %}
+    <title>{{ title }} - BlogBite</title>
+    {% else %}
+    <title>Welcome to BlogBite</title>
+    {% endif %}
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <div class="logo">
+          <img src="../static/images/logo/blogbite_logo1.png" alt="Logo" />
+          <p>BlogBite</p>
         </div>
-        <hr>
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
         <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
+          <li><a href="{{ url_for('index') }}">home</a></li>
+          {% if current_user.is_anonymous %}
+          <li><a href="{{ url_for('login') }}">login</a></li>
+          {% else %}
+          <li>
+            <a href="{{ url_for('profile', username=current_user.username) }}"
+              >profile</a
+            >
+          </li>
+          <li><a href="{{ url_for('logout') }}">logout</a></li>
+          {% endif %}
         </ul>
-        {% endif %}
-        {% endwith %}
-        {% block content %} {% endblock %}
-    </body>
+      </nav>
+    </header>
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %} {% endwith %} {% block content %} {% endblock %}
+  </body>
 </html>

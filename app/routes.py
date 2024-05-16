@@ -16,13 +16,14 @@ def index():
     form = PostForm()
     # posts = Post.query.all()
     posts = Post.query.order_by(Post.datepost.desc()).all()
+    user = current_user
     if form.validate_on_submit():
         post = Post(title = form.title.data, content = form.content.data, author = current_user)
         BlogBite.session.add(post)
         BlogBite.session.commit()
         flash("Post added!")
         return redirect(url_for("index"))
-    return render_template("index.html", title = "Home", form = form, posts = posts)
+    return render_template("index.html", title = "Home", form = form, posts = posts, user = user)
 
 @app.route("/register", methods = ["GET", "POST"])
 def register():

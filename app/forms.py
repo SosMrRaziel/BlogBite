@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_login import current_user
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, ValidationError,Length , Email, EqualTo, Optional
 from app.models import User
 from flask_wtf.file import FileField, FileAllowed
@@ -35,10 +35,10 @@ class RegistrationForm(FlaskForm):
                 "this email is taken, please use a different email")
 
 class UpdateAccountForm(FlaskForm):
-    username = StringField("Username", validators=[DataRequired()])
-    email = StringField("Email", validators=[DataRequired(), Email()])
+    username = StringField("Username")
+    email = StringField("Email", validators= [Email()])
     profile_picture = FileField("Update Picture", validators=[FileAllowed(["jpg", "png"])])
-    profilebio = StringField("Profile Bio", validators=[Length(min=0, max=140)])
+    profilebio = StringField("Profile Bio", validators=[Length(min=0, max=140)], render_kw={"autocomplete": "off"})
     submit = SubmitField("Update")
 
     def validate_username(self, username):
@@ -56,6 +56,6 @@ class UpdateAccountForm(FlaskForm):
                     "this email is taken, please use a different email")
             
 class PostForm(FlaskForm):
-    title = StringField("Title", validators=[Optional()])
-    content = StringField("Content", validators=[DataRequired()])
+    title = StringField("Title", validators=[Optional(), ], render_kw={"autocomplete": "off"})
+    content = TextAreaField("Content", validators=[DataRequired()])
     submit = SubmitField("Post")

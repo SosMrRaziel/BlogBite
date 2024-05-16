@@ -1,8 +1,27 @@
-<tr valign="top">
+<!-- <tr valign="top">
   <td><img src="{{ profile_picture }}" class="profile-pic-post" /></td>
   <td>
     <h1>{{ post.author.username }}:</h1>
     <p>{{ post.content }}</p>
         <p>{{ post.datepost }}</p>
   </td>
-</tr>
+</tr> -->
+
+
+<div class="posts">
+    <div class="picture-post">
+      <img
+        src="{{ profile_picture }}"
+        alt="Profile picture"
+      />
+      <h2>{{ post.author.username }}:</h2>
+    </div>
+    <div class="posts-text">
+      <p post-text>
+        {{ post.content }}
+      </p>
+      <p class="last-seen">Post date: <b>{{ post.datepost }}</b></p>
+    </div>
+  </div>
+</body>
+</html>
